@@ -1,5 +1,5 @@
 // fazer os imports
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 // criar o context
 export const CasamentoContext = createContext([]);
@@ -11,7 +11,7 @@ export const CasamentoProvider = ({ children }) => {
   // criar a lógica para adicionar
   const addToCasamento = (item) => {
     setCasamento([...casamento, item]);
-    localStorage.setItem("Kenzie:Casamento",JSON.stringify(casamento))
+    
   };
 
   // criar a lógica para remover
@@ -20,9 +20,13 @@ export const CasamentoProvider = ({ children }) => {
       (itemOnCasamento) => itemOnCasamento.id !== id
     );
     setCasamento(newCasamento);
-    localStorage.setItem("Kenzie:Casamento",JSON.stringify(casamento))
+    
   };
-
+  useEffect(() => {
+    if(casamento.length>0){
+    localStorage.setItem("Kenzie:casamento",JSON.stringify(casamento))
+  }
+  }, [casamento])
   return (
     <CasamentoContext.Provider
       value={{ casamento, addToCasamento, removeFromCasamento,setCasamento }}

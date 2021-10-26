@@ -1,5 +1,5 @@
 // fazer os imports
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 // criar o context
 export const FormaturaContext = createContext([]);
@@ -12,7 +12,7 @@ export const FormaturaProvider = ({ children }) => {
   const addToFormatura = (item) => {
     setFormatura([...formatura, item]);
    
-    localStorage.setItem("Kenzie:formatura",JSON.stringify(formatura))
+    
   };
 
   // criar a lógica para remover
@@ -24,6 +24,13 @@ export const FormaturaProvider = ({ children }) => {
     setFormatura(newFormatura);
   };
 
+
+useEffect(() => {
+  if(formatura.length>0){
+  localStorage.setItem("Kenzie:formatura",JSON.stringify(formatura))
+}
+}, [formatura])
+ 
   return (
     <FormaturaContext.Provider
       value={{ formatura, addToFormatura, removeFromFormatura,setFormatura }}

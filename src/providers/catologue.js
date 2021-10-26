@@ -11,7 +11,7 @@ export const CatalogueProvider = ({ children }) => {
     axios
       .get("https://api.punkapi.com/v2/beers")
       .then((response) => {setCatalogue(response.data) 
-        localStorage.setItem("Kenzie:All",JSON.stringify(response.data))});
+        localStorage.setItem("Kenzie:Home",JSON.stringify(response.data))});
   };
   useEffect(() => {
     getProduct();

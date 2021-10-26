@@ -16,7 +16,7 @@ const Header = ({filtro,update}) => {
    update(aux)
     }
     if(name===""||!name){
-      update(JSON.parse(localStorage.getItem("Kenzie:All")))
+      update(JSON.parse(localStorage.getItem("Kenzie:Home")))
     }
   
   }

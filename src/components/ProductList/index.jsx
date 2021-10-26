@@ -24,6 +24,8 @@ const ProductList = ({ type, event, remove }) => {
       remove(e);
     }
   };
+let newEvent=JSON.parse(localStorage.getItem(`Kenzie:${type}`))||[]
+console.log(newEvent)
   return (
     <div>
       <ContainerProduct>
@@ -33,7 +35,7 @@ const ProductList = ({ type, event, remove }) => {
           <div>
             {type === "formatura" && (
               <ul>
-                {event
+                {event.length>0
                   ? event.map((item, index) => (
                       <li key={index}>
                         <img src={item.image_url} alt={item.name} />
@@ -47,12 +49,22 @@ const ProductList = ({ type, event, remove }) => {
                         </buttonRmv>
                       </li>
                     ))
-                  : null}
+                  : newEvent.map((item,index)=><li key={index}>
+                  <img src={item.image_url} alt={item.name} />
+                  <p>{item.name}</p>
+                  <buttonRmv>
+                    <button
+                      onClick={() => handleClick(item.id, "formatura")}
+                    >
+                      Remover
+                    </button>
+                  </buttonRmv>
+                </li>)}
               </ul>
             )}{" "}
             {type === "casamento" && (
               <ul>
-                {event
+                {event.length>0
                   ? event.map((item, index) => (
                       <li key={index}>
                         <img src={item.image_url} alt={item.name} />
@@ -64,12 +76,22 @@ const ProductList = ({ type, event, remove }) => {
                         </button>
                       </li>
                     ))
-                  : null}
+                  :  newEvent.map((item,index)=><li key={index}>
+                  <img src={item.image_url} alt={item.name} />
+                  <p>{item.name}</p>
+                  <buttonRmv>
+                    <button
+                      onClick={() => handleClick(item.id, "formatura")}
+                    >
+                      Remover
+                    </button>
+                  </buttonRmv>
+                </li>)}
               </ul>
             )}
             {type === "confraternizacao" && (
               <ul>
-                {event
+                {event.length>0
                   ? event.map((item, index) => (
                       <li key={index}>
                         <img src={item.image_url} alt={item.name} />
@@ -83,7 +105,17 @@ const ProductList = ({ type, event, remove }) => {
                         </button>
                       </li>
                     ))
-                  : null}
+                  :  newEvent.map((item,index)=><li key={index}>
+                  <img src={item.image_url} alt={item.name} />
+                  <p>{item.name}</p>
+                  <buttonRmv>
+                    <button
+                      onClick={() => handleClick(item.id, "formatura")}
+                    >
+                      Remover
+                    </button>
+                  </buttonRmv>
+                </li>)}
               </ul>
             )}{" "}
             {type === "Home" && (
