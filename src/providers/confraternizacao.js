@@ -11,6 +11,7 @@ export const ConfraternizacaoProvider = ({ children }) => {
   // criar a lógica para adicionar
   const addToConfraternizacao = (item) => {
     setConfraternizacao([...confraternizacao, item]);
+    localStorage.setItem("Kenzie:confraternizacao",JSON.stringify(confraternizacao))
   };
 
   // criar a lógica para remover
@@ -19,6 +20,7 @@ export const ConfraternizacaoProvider = ({ children }) => {
       (itemOnConfraternizacao) => itemOnConfraternizacao.id !== id
     );
     setConfraternizacao(newConfraternizacao);
+    localStorage.setItem("Kenzie:confraternizacao",JSON.stringify(confraternizacao))
   };
 
   return (
@@ -27,6 +29,7 @@ export const ConfraternizacaoProvider = ({ children }) => {
         confraternizacao,
         addToConfraternizacao,
         removeFromConfraternizacao,
+        setConfraternizacao
       }}
     >
       {children}

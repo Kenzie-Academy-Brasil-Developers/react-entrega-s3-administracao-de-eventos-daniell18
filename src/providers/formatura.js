@@ -11,6 +11,8 @@ export const FormaturaProvider = ({ children }) => {
   // criar a lógica para adicionar
   const addToFormatura = (item) => {
     setFormatura([...formatura, item]);
+   
+    localStorage.setItem("Kenzie:formatura",JSON.stringify(formatura))
   };
 
   // criar a lógica para remover
@@ -18,13 +20,13 @@ export const FormaturaProvider = ({ children }) => {
     const newFormatura = formatura.filter(
       (itemOnFormatura) => itemOnFormatura.id !== id
     );
-
+    localStorage.setItem("Kenzie:formatura",JSON.stringify(newFormatura))
     setFormatura(newFormatura);
   };
 
   return (
     <FormaturaContext.Provider
-      value={{ formatura, addToFormatura, removeFromFormatura }}
+      value={{ formatura, addToFormatura, removeFromFormatura,setFormatura }}
     >
       {children}
     </FormaturaContext.Provider>

@@ -5,12 +5,14 @@ import { CatalogueContext } from "../../providers/catologue";
 import { useContext } from "react";
 
 const Home = () => {
-  const { catalogue } = useContext(CatalogueContext);
+  const { catalogue,setCatalogue } = useContext(CatalogueContext);
+  let reNew=JSON.parse(localStorage.getItem("Kenzie:All"))||catalogue
+
   return (
     <div>
-      <Header />
+      <Header filtro={catalogue} update={setCatalogue} />
       <Menu />
-      <ProductList event={catalogue} type="Home" />
+      <ProductList event={reNew} type="Home" />
     </div>
   );
 };

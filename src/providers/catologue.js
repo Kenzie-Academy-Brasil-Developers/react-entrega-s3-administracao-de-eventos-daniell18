@@ -10,13 +10,14 @@ export const CatalogueProvider = ({ children }) => {
   const getProduct = () => {
     axios
       .get("https://api.punkapi.com/v2/beers")
-      .then((Response) => setCatalogue(Response.data));
+      .then((response) => {setCatalogue(response.data) 
+        localStorage.setItem("Kenzie:All",JSON.stringify(response.data))});
   };
   useEffect(() => {
     getProduct();
   }, []);
   return (
-    <CatalogueContext.Provider value={{ catalogue }}>
+    <CatalogueContext.Provider value={{ catalogue,setCatalogue }}>
       {children}
     </CatalogueContext.Provider>
   );

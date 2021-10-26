@@ -6,14 +6,17 @@ import ProductList from "../../components/ProductList";
 import { CasamentoContext } from "../../providers/casamento";
 
 const Casamento = () => {
-  const { casamento, removeFromCasamento } = useContext(CasamentoContext);
-
+  const { casamento, removeFromCasamento,setCasamento } = useContext(CasamentoContext);
+  let reNew=JSON.parse(localStorage.getItem("Kenzie:casamento"))||-99
+  if(reNew===-99){
+    reNew=casamento
+  }
   return (
     <div>
-      <Header />
+      <Header filtro={reNew} update={setCasamento} />
       <Menu />
       <ProductList
-        event={casamento}
+        event={reNew}
         remove={removeFromCasamento}
         type="casamento"
       />

@@ -6,13 +6,13 @@ import ProductList from "../../components/ProductList";
 import { ConfraternizacaoContext } from "../../providers/confraternizacao";
 
 const Confraternizacao = () => {
-  const { confraternizacao, removeFromConfraternizacao } = useContext(
+  const { confraternizacao, removeFromConfraternizacao,setConfraternizacao } = useContext(
     ConfraternizacaoContext
   );
 
   return (
     <div>
-      <Header />
+      <Header filtro={confraternizacao} update={setConfraternizacao}  />
       <Menu />
       <ProductList
         event={confraternizacao}

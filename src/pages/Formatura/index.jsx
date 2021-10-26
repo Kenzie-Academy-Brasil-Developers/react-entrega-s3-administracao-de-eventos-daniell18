@@ -5,11 +5,14 @@ import Menu from "../../components/Menu";
 import ProductList from "../../components/ProductList";
 import { FormaturaContext } from "../../providers/formatura";
 const Formatura = () => {
-  const { formatura, removeFromFormatura } = useContext(FormaturaContext);
-
+  const { formatura, removeFromFormatura,setFormatura } = useContext(FormaturaContext);
+  let reNew=JSON.parse(localStorage.getItem("Kenzie:formatura"))||formatura
+  if(reNew===-99){
+    reNew=formatura
+  }
   return (
     <div>
-      <Header />
+      <Header filtro={reNew} update={setFormatura}/>
       <Menu />
       <ProductList
         event={formatura}
